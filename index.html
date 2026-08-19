@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nils Rumpf</title>
+<meta name="description" content="Elektroplaner EFZ. Elektronik, Messtechnik und eigene Projekte.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#E7EAEE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E7EAEE'/%3E%3Crect x='5.5' y='5.5' width='21' height='21' fill='none' stroke='%23101519' stroke-width='2'/%3E%3Cpath d='M5.5 20.5h21' stroke='%23101519' stroke-width='2'/%3E%3Cpath d='M18.5 20.5v6' stroke='%23004D82' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E7EAEE;
+  --card:#F6F8F9;
+  --ink:#101519;
+  --ink-2:#58646E;
+  --rule:#B9C3CB;
+  --rule-soft:#D3DAE0;
+  --brand:#004D82;
+  --brand-lift:#1E7BC4;
+
+  --disp:"Barlow Condensed",system-ui,sans-serif;
+  --body:"Barlow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --w:900px;
+  --gut:clamp(18px,4vw,40px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(rgba(16,21,25,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,21,25,.05) 1px, transparent 1px);
+  background-size:28px 28px;
+  background-position:center top;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 var(--gut)}
+
+/* ============ Kopf (Banner + Avatar), beide Ansichten gleich ============ */
+.classic-banner{position:relative;width:100%;border:1px solid var(--rule);background:#0B1116;overflow:hidden}
+.classic-banner img{width:100%;height:auto;display:block}
+.classic-banner__label{
+  position:absolute;left:clamp(14px,4vw,48px);top:16%;
+  color:#EDF1F4;font-family:var(--disp);font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;font-size:clamp(19px,3.4vw,32px);line-height:1.15;
+  text-shadow:0 2px 14px rgba(0,0,0,.5);
+}
+.classic-banner__label b{display:block;font-weight:400;color:#9AA6AF;font-size:.62em;letter-spacing:.16em;margin-bottom:.2em}
+.classic-id{
+  position:relative;display:flex;align-items:flex-end;gap:16px;
+  margin-top:calc(-1 * clamp(66px,11vw,93px));margin-left:clamp(14px,4vw,48px);
+}
+.classic-avatar{
+  width:clamp(132px,22vw,186px);height:clamp(132px,22vw,186px);
+  border-radius:50%;overflow:hidden;border:4px solid var(--paper);background:var(--card);
+  box-shadow:0 2px 10px rgba(16,21,25,.18);flex:none;
+}
+.classic-avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+.classic-idtext{padding-bottom:6px}
+.classic-name{
+  font-family:var(--disp);font-weight:600;text-transform:uppercase;
+  font-size:clamp(24px,4.6vw,34px);line-height:1;margin:0 0 6px;letter-spacing:-.005em;
+}
+.classic-roles{font-family:var(--disp);font-size:clamp(14px,1.9vw,16.5px);color:var(--ink-2);margin:0}
+.classic-roles span:not(:last-child)::after{content:" · "}
+
+.pagenav{display:flex;gap:6px;margin:clamp(20px,4vw,28px) 0 0;border-bottom:1.5px solid var(--ink)}
+.pagenav a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);text-decoration:none;padding:0 4px 10px;margin-bottom:-1.5px;
+  border-bottom:2.5px solid transparent;
+}
+.pagenav a.active{color:var(--ink);border-color:var(--brand)}
+.pagenav a:hover{color:var(--ink)}
+
+.page-surface{
+  max-width:calc(var(--w) + 2px);margin:clamp(10px,2.5vw,22px) auto 0;
+  background:var(--paper);
+  box-shadow:0 30px 70px -40px rgba(16,21,25,.35), 0 2px 0 rgba(16,21,25,.04);
+}
+main.classic{padding-top:clamp(26px,4.5vw,40px);padding-bottom:clamp(50px,8vw,90px)}
+main.classic.compact{padding-bottom:clamp(16px,2.8vw,24px)}
+main.classic.compact .card-bio{margin-bottom:clamp(14px,2.2vw,20px)}
+main.classic.compact .buttons{gap:8px}
+main.classic.compact .buttons li a{padding:11px 14px}
+
+/* ============ Karten-Inhalt (Bio + Buttons), gleiche Breite wie Projekte ============ */
+.card-bio{font-size:clamp(16.5px,2vw,18.5px);line-height:1.55;margin:0 0 clamp(24px,4vw,32px);text-wrap:balance}
+.buttons{display:grid;gap:10px;list-style:none;margin:0 0 10px;padding:0}
+.buttons:last-child{margin-bottom:0}
+.buttons.cols-2{grid-template-columns:repeat(2,1fr)}
+.buttons.cols-3{grid-template-columns:repeat(3,1fr)}
+.buttons.cols-1{grid-template-columns:1fr}
+.buttons li a{
+  display:flex;align-items:center;gap:12px;
+  border:1px solid var(--rule);background:var(--card);
+  padding:14px 16px;text-decoration:none;transition:border-color .15s,background .15s;
+}
+.buttons li a:hover{border-color:var(--brand);background:#fff}
+.buttons svg{width:19px;height:19px;flex:none;color:var(--brand)}
+.buttons__label{font-family:var(--disp);font-weight:500;font-size:16.5px;line-height:1.15}
+.buttons__sub{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-2);margin-top:1px}
+.buttons.cols-1 li a{background:var(--brand);color:var(--paper);border-color:var(--brand);justify-content:center}
+.buttons.cols-1 li a:hover{background:var(--brand-lift);border-color:var(--brand-lift)}
+.buttons.cols-1 svg{color:var(--paper)}
+.buttons.cols-1 .buttons__sub{color:#CFE0EE}
+@media (max-width:520px){.buttons.cols-3{grid-template-columns:1fr}}
+
+@media (max-width:520px){.buttons{grid-template-columns:1fr}}
+
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.row{border-bottom:1px solid var(--rule)}
+.row a{display:grid;grid-template-columns:16px 168px 1fr auto;gap:0 22px;align-items:start;padding:22px 0;text-decoration:none;position:relative}
+.row__bar{align-self:stretch;background:var(--brand);width:3px;transform:scaleY(0);transform-origin:top;transition:transform .28s cubic-bezier(.2,.7,.3,1)}
+.row__thumb{position:relative;align-self:stretch;border:1px solid var(--rule);background:var(--card);overflow:hidden}
+.row__thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.row__code{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-2);transition:color .2s}
+.row__title{font-family:var(--disp);font-weight:500;font-size:clamp(22px,3vw,28px);line-height:1.1;margin:5px 0 8px}
+.row__sum{margin:0;color:var(--ink-2);font-size:15.5px;max-width:52ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.tags li{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--rule);padding:3px 8px}
+.row__go{font-family:var(--mono);font-size:19px;color:var(--rule);align-self:center;transition:color .2s,transform .28s cubic-bezier(.2,.7,.3,1)}
+.row a:hover .row__bar{transform:scaleY(1)}
+.row a:hover .row__thumb img{transform:scale(1.035)}
+.row a:hover .row__code{color:var(--brand)}
+.row a:hover .row__go{color:var(--brand);transform:translateX(4px)}
+
+.addbtn{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:6px 11px;cursor:pointer;text-decoration:none}
+.addbtn:hover{background:var(--ink);color:var(--paper)}
+body.is-admin .addbtn{display:inline-block}
+
+.back{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;margin:0 0 22px}
+.back:hover{color:var(--brand)}
+.dblock{border:1.5px solid var(--ink);background:var(--card);display:grid;grid-template-columns:1fr 220px}
+.dblock__main{padding:clamp(18px,3vw,26px)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin:0 0 9px}
+.dtitle{font-family:var(--disp);font-weight:600;font-size:clamp(28px,5.6vw,48px);line-height:1;margin:8px 0 10px;text-transform:uppercase}
+.dsub{font-family:var(--disp);font-size:clamp(15px,2.1vw,18px);color:var(--ink-2);margin:0}
+.dblock__side{border-left:1.5px solid var(--ink);display:grid;grid-template-rows:repeat(3,1fr)}
+.cell{border-bottom:1px solid var(--rule);padding:10px 15px;display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:60px}
+.cell:last-child{border-bottom:0}
+.cell__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.cell__v{font-family:var(--mono);font-size:14px;font-weight:500}
+.cell a{text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:1px}
+.cell a:hover{color:var(--brand);border-color:var(--brand)}
+
+.dsec{display:grid;grid-template-columns:168px 1fr;gap:0 22px;padding:24px 0;border-bottom:1px solid var(--rule-soft)}
+.dsec:first-of-type{border-top:1px solid var(--rule);margin-top:clamp(26px,4vw,40px)}
+.dsec__k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);padding-top:5px}
+.dsec__v{max-width:60ch}
+.dsec__v p{margin:0 0 .85em}
+.dsec__v p:last-child{margin-bottom:0}
+
+.specs{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px}
+.specs td{padding:7px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.specs tr:last-child td{border-bottom:0}
+.specs td:first-child{width:44%;color:var(--ink-2);padding-right:18px}
+
+.revs{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+.revs th{text-align:left;font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule);padding:0 14px 7px 0}
+.revs td{padding:8px 14px 8px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.revs tr:last-child td{border-bottom:0}
+.revs td:first-child,.revs th:first-child{width:60px}
+.revs td:nth-child(2),.revs th:nth-child(2){width:114px;white-space:nowrap}
+
+.plates{margin:clamp(30px,5vw,50px) 0 0}
+figure{margin:0 0 clamp(20px,4vw,32px)}
+figure .frame{border:1px solid var(--rule);background:var(--card)}
+figure .frame img,figure .frame video{width:100%}
+figcaption{display:flex;gap:14px;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-2);margin-top:8px}
+figcaption b{font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);flex:none}
+
+.dlinks{list-style:none;margin:0;padding:0}
+.dlinks li{border-bottom:1px solid var(--rule-soft)}
+.dlinks li:last-child{border-bottom:0}
+.dlinks a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;text-decoration:none;font-family:var(--disp);font-size:18px}
+.dlinks a span{font-family:var(--mono);font-size:15px;color:var(--rule);transition:color .2s,transform .25s}
+.dlinks a:hover{color:var(--brand)}
+.dlinks a:hover span{color:var(--brand);transform:translateX(4px)}
+
+.empty{border:1px dashed var(--rule);padding:30px 24px;font-family:var(--disp);font-size:19px;color:var(--ink-2);margin-top:20px}
+
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.rise{opacity:0;transform:translateY(10px);animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+@media (max-width:640px){
+  .dblock{grid-template-columns:1fr}
+  .dblock__side{border-left:0;border-top:1.5px solid var(--ink);grid-template-rows:none;grid-template-columns:repeat(3,1fr)}
+  .cell{border-bottom:0;border-right:1px solid var(--rule);min-height:54px}
+  .cell:last-child{border-right:0}
+  .row a{grid-template-columns:16px 1fr;gap:0 14px}
+  .row__thumb{grid-column:2;margin-bottom:12px}
+  .row__body{grid-column:2}
+  .row__go{display:none}
+  .dsec{grid-template-columns:1fr;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rise{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const ICON={
+  phone:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 3h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A15 15 0 0 1 2.5 4.6 1.5 1.5 0 0 1 4 3Z"/></svg>',
+  mail:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12"/><path d="m2.6 4.6 7.4 6 7.4-6"/></svg>',
+  linkedin:'<svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.6 7.3H1.7V18h2.9V7.3ZM3.2 2.4A1.7 1.7 0 1 0 3.2 5.8 1.7 1.7 0 0 0 3.2 2.4Zm8 4.6c-1.9 0-2.8 1-3.2 1.7V7.3H5.1c.04 1 0 10.7 0 10.7h2.9V12c0-.35.02-.7.13-.95.28-.7.9-1.4 1.95-1.4 1.37 0 1.92 1.05 1.92 2.6V18h2.9v-6.05c0-2.7-1.44-4-3.6-4Z"/></svg>',
+  github:'<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1C5.03 1 1 5.03 1 10c0 3.98 2.58 7.34 6.15 8.53.45.08.62-.2.62-.43 0-.21-.01-.92-.01-1.68-2.26.42-2.85-.55-3.03-1.06-.1-.26-.54-1.06-.92-1.27-.31-.17-.77-.58-.01-.6.71-.01 1.22.66 1.39.93.81 1.36 2.1.98 2.62.75.08-.59.31-.98.57-1.2-2-.23-4.1-1-4.1-4.44 0-.98.35-1.79.92-2.42-.09-.23-.4-1.15.09-2.39 0 0 .76-.24 2.48.92a8.3 8.3 0 0 1 2.26-.31c.77 0 1.53.1 2.25.31 1.72-1.17 2.48-.92 2.48-.92.49 1.24.18 2.16.09 2.39.58.63.92 1.43.92 2.42 0 3.45-2.11 4.21-4.12 4.44.33.28.61.83.61 1.68 0 1.22-.01 2.2-.01 2.5 0 .24.17.52.62.43A9.01 9.01 0 0 0 19 10c0-4.97-4.03-9-9-9Z"/></svg>',
+  makerworld:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 1.5 2 5.7v8.6l8 4.2 8-4.2V5.7L10 1.5Z"/><path d="M2 5.7 10 9.9l8-4.2M10 9.9V18.3"/></svg>',
+  arrow:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10h12M11 5l5 5-5 5"/></svg>'
+};
+const state={data:null};
+const app=document.getElementById('app');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const para=t=>String(t).split(/\n\s*\n/).map(p=>`<p>${esc(p).replace(/\n/g,'<br>')}</p>`).join('');
+const usable=v=>v && !/^(HIER_|mailto:HIER_|tel:HIER_)/.test(v);
+function linkAttrs(url){
+  if(/^mailto:|^tel:/.test(url)) return '';
+  if(url.startsWith('#')) return '';
+  return ' target="_blank" rel="noopener"';
+}
+
+function cells(list){
+  return list.map(c=>`<div class="cell"><span class="cell__k">${esc(c[0])}</span><span class="cell__v">${c[2]?c[1]:esc(c[1])}</span></div>`).join('');
+}
+
+function classicHeader(bannerLabel){
+  const m=state.data.meta;
+  return `
+  <div class="wrap">
+    <div class="classic-banner">
+      <img src="${esc(m.hero)}" alt="">
+      ${bannerLabel?`<div class="classic-banner__label">${esc(bannerLabel)}</div>`:''}
+    </div>
+    <div class="classic-id">
+      <div class="classic-avatar"><img src="${esc(m.portraitFallback||m.portrait)}" alt="Porträt ${esc(m.name)}"></div>
+      <div class="classic-idtext">
+        <h1 class="classic-name">${esc(m.name)}</h1>
+        <p class="classic-roles"><span>${esc(m.role)}</span><span>${esc(m.role2)}</span></p>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCard(){
+  const m=state.data.meta;
+  document.title=m.name;
+
+  const btn=(kind,label,sub,url)=>({kind,label,sub,url});
+  const contact=[
+    btn('phone','Anrufen',usable(m.phone)?m.phone:null, usable(m.phone)?`tel:${m.phone.replace(/\s+/g,'')}`:null),
+    btn('mail','E-Mail','Nachricht schreiben',(m.links||[]).find(l=>l.kind==='mail'&&usable(l.url))?.url),
+  ].filter(i=>i.url);
+
+  const profiles=[
+    btn('linkedin','LinkedIn','Profil ansehen',(m.links||[]).find(l=>l.kind==='linkedin'&&usable(l.url))?.url),
+    btn('github','GitHub','Code & Projekte',(m.links||[]).find(l=>l.kind==='github'&&usable(l.url))?.url),
+    btn('makerworld','MakerWorld','3D-Modelle',(m.links||[]).find(l=>l.kind==='makerworld'&&usable(l.url))?.url),
+  ].filter(i=>i.url);
+
+  const row=(list,cols,delay)=>`<ul class="buttons cols-${cols} rise" style="animation-delay:${delay}s">
+    ${list.map(i=>`<li><a href="${esc(i.url)}"${linkAttrs(i.url)}>${ICON[i.kind]}<span><span class="buttons__label">${esc(i.label)}</span><span class="buttons__sub">${esc(i.sub)}</span></span></a></li>`).join('')}
+  </ul>`;
+
+  app.innerHTML=`<div class="page-surface">`+classicHeader()+`
+  <main class="classic wrap compact">
+    ${row(contact,2,.05)}
+    ${row([btn('arrow','Projektportfolio',`${state.data.projects.length} dokumentierte Projekte`,'#/projekte')],1,.09)}
+    ${row(profiles,3,.13)}
+  </main></div>`;
+}
+
+function renderList(){
+  const m=state.data.meta, ps=state.data.projects;
+  document.title=`Projekte — ${m.name}`;
+  app.innerHTML=`<div class="page-surface">`+classicHeader()+`
+  <main class="classic wrap">
+    <p class="card-bio rise">${esc(m.intro)}</p>
+    <p style="margin:0 0 18px"><a class="addbtn" href="neu-projekt.html">+ Projekt erfassen</a></p>
+    ${ps.length?`<ul class="rows">${ps.map((p,i)=>`
+      <li class="row rise" style="animation-delay:${.05+i*.05}s">
+        <a href="#/${esc(p.id)}">
+          <i class="row__bar" aria-hidden="true"></i>
+          <div class="row__thumb"><img src="${esc(p.cover)}" alt="" loading="${i?'lazy':'eager'}"></div>
+          <div class="row__body">
+            <span class="row__code">${esc(p.code)}</span>
+            <h3 class="row__title">${esc(p.title)}</h3>
+            <p class="row__sum">${esc(p.summary)}</p>
+            <ul class="tags">${(p.tags||[]).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+          </div>
+          <span class="row__go" aria-hidden="true">→</span>
+        </a>
+      </li>`).join('')}</ul>`
+    :`<p class="empty">Noch kein Projekt erfasst.</p>`}
+  </main></div>`;
+}
+
+function renderDetail(p){
+  const m=state.data.meta;
+  document.title=`${p.title} — ${m.name}`;
+  const last=(p.revisions&&p.revisions[0])||null;
+  app.innerHTML=`<div class="page-surface">`+classicHeader()+`
+  <main class="classic wrap">
+    <a class="back" href="#/projekte">← Übersicht</a>
+    <div class="dblock rise">
+      <div class="dblock__main">
+        <p class="eyebrow">${esc(p.code)}</p>
+        <h1 class="dtitle">${esc(p.title)}</h1>
+        <p class="dsub">${esc(p.subtitle)}</p>
+      </div>
+      <div class="dblock__side">
+        ${cells([
+          ['Revision', last?last.rev:'—'],
+          ['Datum', last?last.date:'—'],
+          ['Gebiet', (p.tags||[]).slice(0,2).join(' · ')||'—']
+        ])}
+      </div>
+    </div>
+
+    ${(p.sections||[]).map(s=>`<div class="dsec"><div class="dsec__k">${esc(s.label)}</div><div class="dsec__v">${para(s.body)}</div></div>`).join('')}
+
+    ${p.specs&&p.specs.length?`<div class="dsec"><div class="dsec__k">Kennwerte</div><div class="dsec__v">
+      <table class="specs">${p.specs.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>
+    </div></div>`:''}
+
+    ${p.revisions&&p.revisions.length?`<div class="dsec"><div class="dsec__k">Änderungen</div><div class="dsec__v">
+      <table class="revs"><thead><tr><th>Rev</th><th>Datum</th><th>Änderung</th></tr></thead>
+      <tbody>${p.revisions.map(r=>`<tr><td>${esc(r.rev)}</td><td>${esc(r.date)}</td><td>${esc(r.note)}</td></tr>`).join('')}</tbody></table>
+    </div></div>`:''}
+
+    ${p.links&&p.links.length?`<div class="dsec"><div class="dsec__k">Weiterführend</div><div class="dsec__v">
+      <ul class="dlinks">${p.links.map(l=>`<li><a href="${esc(l.url)}"${linkAttrs(l.url)}>${esc(l.label)}<span aria-hidden="true">→</span></a></li>`).join('')}</ul>
+    </div></div>`:''}
+
+    <div class="plates">
+      ${(p.media||[]).map((x,i)=>`<figure>
+        <div class="frame">${x.type==='video'
+          ? `<video src="${esc(x.src)}" poster="${esc(x.poster||'')}" controls preload="${x.autoplay?'metadata':'none'}" playsinline muted loop${x.autoplay?' autoplay':''}></video>`
+          : `<img src="${esc(x.src)}" alt="${esc(x.caption)}" loading="lazy">`}</div>
+        <figcaption><b>Bild ${String(i+1).padStart(2,'0')}</b><span>${esc(x.caption)}</span></figcaption>
+      </figure>`).join('')}
+    </div>
+  </main></div>`;
+}
+
+function route(){
+  if(!state.data) return;
+  const id=location.hash.replace(/^#\/?/,'').trim();
+  if(!id){ renderCard(); window.scrollTo({top:0,behavior:'instant'}); return; }
+  if(id==='projekte'){ renderList(); window.scrollTo({top:0,behavior:'instant'}); return; }
+  const p=state.data.projects.find(x=>x.id===id);
+  if(p){ renderDetail(p); } else { renderCard(); }
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+fetch('projects.json',{cache:'no-store'})
+  .then(r=>{if(!r.ok)throw 0;return r.json()})
+  .then(d=>{
+    state.data=d;
+    if(new URLSearchParams(location.search).has('admin')) document.body.classList.add('is-admin');
+    route();
+  })
+  .catch(()=>{
+    app.innerHTML=`<div class="wrap" style="padding-top:60px"><p class="empty">projects.json konnte nicht geladen werden. Im Ordner
+    <code>python -m http.server</code> starten und <code>localhost:8000</code> öffnen.</p></div>`;
+  });
+
+addEventListener('hashchange',route);
+</script>
+</body>
+</html>

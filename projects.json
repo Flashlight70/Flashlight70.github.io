@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "name": "Nils Rumpf",
+    "role": "Elektroplaner EFZ",
+    "role2": "Elektrotechniker HF in Ausbildung",
+    "tagline": "Aus Faszination für Elektrotechnik, Elektronik, KI und 3D‑Druck baue ich mir eigene Schaltungen und Gehäuse.",
+    "hero": "assets/site/hero-banner.jpg",
+    "heroAlt": "",
+    "portrait": "assets/site/portrait.webp",
+    "portraitFallback": "assets/site/portrait.png",
+    "stand": "2026-08",
+    "intro": "Aus Faszination für Elektrotechnik, Elektronik, KI und 3D‑Druck baue ich mir gerne eigene Schaltungen und Gehäuse. Hier dokumentiere ich meine neuesten Projekte.",
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Flashlight70",
+        "kind": "github"
+      },
+      {
+        "label": "MakerWorld",
+        "url": "https://makerworld.com/de/@rumpf.nils",
+        "kind": "makerworld"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/nils-rumpf/",
+        "kind": "linkedin"
+      },
+      {
+        "label": "E-Mail",
+        "url": "mailto:rumpf.nils@gmail.com",
+        "kind": "mail"
+      }
+    ],
+    "phone": "+41 79 275 75 50"
+  },
+  "projects": [    {
+      "id": "pi-server",
+      "code": "26-01",
+      "title": "Raspberry-Pi App-Server",
+      "subtitle": "Konstruktion, 3D-Druck, Linux-Serverbetrieb",
+      "summary": "Heimserver auf Raspberry Pi 5 mit selbst konstruiertem Gehäuse.\nZentrale für meine eigenen Webb-Apps.",
+      "tags": [
+        "Konstruktion",
+        "3D-Druck",
+        "Netzwerk"
+      ],
+      "cover": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-front.jpg",
+      "media": [
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-front.jpg",
+          "caption": "Gehäuse von vorne"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-open-front.jpg",
+          "caption": "Gehäuse geöffnet von vorne"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-rear.jpg",
+          "caption": "Gehäuse von hinten"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-open-rear.jpg",
+          "caption": "Gehäuse geöffnet von hinten"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-usage-front.jpg",
+          "caption": "Server im Einsatz von vorne"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/photo-usage-rear.jpg",
+          "caption": "Server im Einsatz von hinten"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/explosion.gif",
+          "caption": "Sprenganimation"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/assembly.gif",
+          "caption": "Zusammenbau Animation"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/render-closed-front.jpg",
+          "caption": "Gehäuserendering von vorne"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/render-open-front.jpg",
+          "caption": "Gehäuserendering geöffnet von vorne"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/render-closed-rear.jpg",
+          "caption": "Gehäuserendering von hinten"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/render-open-rear.jpg",
+          "caption": "Gehäuserendering geöffnet von hinten"
+        }
+      ],
+      "sections": [
+        {
+          "label": "Problemstellung",
+          "body": "Ich entwickle mithilfe von KI gerne auf mich zugeschnittene Web-Apps.\nDa ich auf diversen, unterschiedlichen Geräten arbeite wurde der lokale Betrieb zunehmend zu einem Problem. Zusätzlich erschwerte der Zugriff für meine Frau sowie der Datenaustausch zwischen meinen Geräten die Situation.\nEin Server mit Portweiterleitung aus meinem privaten Netzwerk war kein Thema, da mir das Risiko zu gross ist."
+        },
+        {
+          "label": "Lösung",
+          "body": "Die Lösung: Ein App-Server auf einem Raspberry Pi 5 mit einer NVMe-SSD und Zugriff via Tailscale, ganz einfach von jedem Gerät in diesem Netzwerk.\nTäglich wird ein Backup sämtlicher Dateien auf meinem privaten OneDrive erstellt und nach 30 Tagen automatisch gelöscht."
+        },
+        {
+          "label": "Gehäuse",
+          "body": "Da ich online kein passendes Gehäuse für meine spezifischen Anforderungen finden konnte, entwickelte ich mir mein eigenes.\nDamit der Server Praktisch neben dem Router platziert werden kann, leitete ich mittels Adapter-Board die Anschlüsse an die Rückseite um.\nDurch die Lüfterrichtung des Aktivkühlers auf meinem Raspberry Pi 5, von hinten nach vorne, war auch die Luftrichtung durch das Gehäuse vorherbestimmt. Aufgrund dieser Ausgangslage entschied ich mich den 40mm Lüfter hinten unten mit einsaugender Richtung zu platzieren. Hinten zwischen den Anschlüssen sind zusätzliche Lufteinlässe für nachströmende Kaltluft. Vorne zwischen dem optisch ansprechenden Raster sind Luftlöcher für die abströmende Warmluft versteckt."
+        },
+        {
+          "label": "Eigenanteil",
+          "body": "Die Konstruktion des gesamten Gehäuses, so wie die Platzierung der Bauteile ist 100% Eigenanteil.\nDie Entwicklung der Apps basiert zum grössten Teil auf KI aber unter der Federführung für Design und Funktionen von mir.\nDie Einrichtung des Servers sowie des Netzwerkes passierten mit viel Unterstützung seitens KI."
+        }
+      ],
+      "specs": [
+        [
+          "Rechner",
+          "Raspberry Pi 5 mit original Aktivkühler"
+        ],
+        [
+          "Speicher",
+          "512GB NVMe-SSD 2230 auf M.2 HAT+"
+        ],
+        [
+          "Gehäuseteile",
+          "7 Gedruckte Teile, teils PLA, teils PETG HF"
+        ]
+      ],
+      "revisions": [
+        { "rev": "1.0", "date": "2026-08-18", "note": "Dokumentation und Modelldateien veröffentlicht" }
+      ],
+      "links": [
+        {
+          "label": "Dokumentation und Dateien auf GitHub",
+          "url": "https://github.com/Flashlight70/pi-server"
+        },
+        {
+          "label": "Dateien zum direkten drucken auf Makerworld",
+          "url": "https://makerworld.com/de/models/3161278-desktop-style-raspberry-pi-5-case-m-2-hat-fan#profileId-3572718"
+        }
+      ]
+    }
+]
+}

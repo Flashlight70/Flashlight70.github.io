@@ -1,0 +1,18 @@
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editoren
+.vscode/
+*.swp
+
+# Zugangsdaten
+.env
+*.key
+*.pem
+
+# Grosse Rohdateien - nicht ins Repo, vorher verkleinern
+*.avi
+*.mov
+*.PNG
+*.f3d
