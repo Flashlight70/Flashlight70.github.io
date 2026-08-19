@@ -115,6 +115,11 @@ main.classic.compact .buttons li a{padding:11px 14px}
 .buttons.cols-1 svg{color:var(--paper)}
 .buttons.cols-1 .buttons__sub{color:#CFE0EE}
 @media (max-width:520px){.buttons.cols-3{grid-template-columns:1fr}}
+@media (max-width:480px){
+  .buttons.cols-2{grid-template-columns:1fr}
+  .classic-id{flex-direction:column;align-items:flex-start;gap:10px}
+  .classic-idtext{padding-top:0}
+}
 
 @media (max-width:520px){.buttons{grid-template-columns:1fr}}
 
