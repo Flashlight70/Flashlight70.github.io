@@ -247,7 +247,7 @@ function classicHeader(bannerLabel){
       ${bannerLabel?`<div class="classic-banner__label">${esc(bannerLabel)}</div>`:''}
     </div>
     <div class="classic-id">
-      <div class="classic-avatar"><img src="${esc(m.portraitFallback||m.portrait)}" alt="Porträt ${esc(m.name)}"></div>
+      <div class="classic-avatar"><img src="${esc(m.portrait)}" alt="Porträt ${esc(m.name)}"></div>
       <div class="classic-idtext">
         <h1 class="classic-name">${esc(m.name)}</h1>
         <p class="classic-roles"><span>${esc(m.role)}</span><span>${esc(m.role2)}</span></p>
