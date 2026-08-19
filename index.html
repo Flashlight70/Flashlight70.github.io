@@ -60,20 +60,38 @@ a{color:inherit}
   position:relative;
   margin-top:calc(-1 * clamp(66px,11vw,93px));margin-left:clamp(14px,4vw,48px);
 }
-.classic-id__row{display:flex;align-items:flex-end;gap:16px}
 .classic-avatar{
   width:clamp(132px,22vw,186px);height:clamp(132px,22vw,186px);
   border-radius:50%;overflow:hidden;border:4px solid var(--paper);background:var(--card);
   box-shadow:0 2px 10px rgba(16,21,25,.18);flex:none;
 }
 .classic-avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 14%}
-.classic-name{
+
+/* Desktop: Name + Untertitel zusammen als ein Block neben dem Bild (Original) */
+.classic-id__row--mobile,.classic-roles--mobile{display:none}
+.classic-id__row--desktop{display:flex;align-items:flex-end;gap:16px}
+.classic-idtext{padding-bottom:6px}
+.classic-id__row--desktop .classic-name{
   font-family:var(--disp);font-weight:600;text-transform:uppercase;
-  font-size:clamp(24px,4.6vw,34px);line-height:1;margin:0;letter-spacing:-.005em;
-  padding-bottom:6px;
+  font-size:clamp(24px,4.6vw,34px);line-height:1;margin:0 0 6px;letter-spacing:-.005em;
 }
-.classic-roles{font-family:var(--disp);font-size:clamp(14px,1.9vw,16.5px);color:var(--ink-2);margin:10px 0 0}
-.classic-roles span:not(:last-child)::after{content:" · "}
+.classic-roles--desktop{font-family:var(--disp);font-size:clamp(14px,1.9vw,16.5px);color:var(--ink-2);margin:0}
+.classic-roles--desktop span:not(:last-child)::after{content:" · "}
+
+/* Mobile: eigene, unabhängige Variante */
+@media (max-width:480px){
+  .classic-id__row--desktop{display:none}
+  .classic-id__row--mobile{display:flex;align-items:flex-end;gap:16px}
+  .classic-id__row--mobile .classic-name{
+    font-family:var(--disp);font-weight:600;text-transform:uppercase;
+    font-size:28px;line-height:1;margin:0;letter-spacing:-.005em;
+  }
+  .classic-roles--mobile{
+    display:block;font-family:var(--disp);font-size:14px;color:var(--ink-2);
+    margin:10px 0 0;text-align:center;
+  }
+  .classic-roles--mobile span:not(:last-child)::after{content:" · "}
+}
 
 .pagenav{display:flex;gap:6px;margin:clamp(20px,4vw,28px) 0 0;border-bottom:1.5px solid var(--ink)}
 .pagenav a{
@@ -120,8 +138,6 @@ main.classic.compact .buttons li a{padding:11px 14px}
   .buttons.cols-2 .buttons__sub{font-size:9.5px;letter-spacing:.03em}
   .buttons.cols-2 li a{padding:12px 10px;gap:9px;height:100%}
   .buttons.cols-1 li a{justify-content:flex-start}
-  .classic-name{font-size:28px}
-  .classic-roles{text-align:center}
 }
 
 .rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
@@ -130,6 +146,7 @@ main.classic.compact .buttons li a{padding:11px 14px}
 .row__bar{align-self:stretch;background:var(--brand);width:3px;transform:scaleY(0);transform-origin:top;transition:transform .28s cubic-bezier(.2,.7,.3,1)}
 .row__thumb{position:relative;align-self:stretch;border:1px solid var(--rule);background:var(--card);overflow:hidden}
 .row__thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.row__thumb--mobile{display:none}
 .row__code{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-2);transition:color .2s}
 .row__title{font-family:var(--disp);font-weight:500;font-size:clamp(22px,3vw,28px);line-height:1.1;margin:5px 0 8px}
 .row__sum{margin:0;color:var(--ink-2);font-size:15.5px;max-width:52ch}
@@ -206,7 +223,10 @@ figcaption b{font-weight:500;letter-spacing:.14em;text-transform:uppercase;color
   .cell{border-bottom:0;border-right:1px solid var(--rule);min-height:54px}
   .cell:last-child{border-right:0}
   .row a{grid-template-columns:16px 1fr;gap:0 14px}
-  .row__thumb{grid-column:2;margin-bottom:12px}
+  .row__thumb--desktop{display:none}
+  .row__thumb--mobile{
+    display:block;aspect-ratio:16/9;margin:10px 0 14px;
+  }
   .row__body{grid-column:2}
   .row__go{display:none}
   .dsec{grid-template-columns:1fr;gap:8px}
@@ -253,11 +273,18 @@ function classicHeader(bannerLabel){
       ${bannerLabel?`<div class="classic-banner__label">${esc(bannerLabel)}</div>`:''}
     </div>
     <div class="classic-id">
-      <div class="classic-id__row">
+      <div class="classic-id__row classic-id__row--desktop">
+        <div class="classic-avatar"><img src="${esc(m.portrait)}" alt="Porträt ${esc(m.name)}"></div>
+        <div class="classic-idtext">
+          <h1 class="classic-name">${esc(m.name)}</h1>
+          <p class="classic-roles--desktop"><span>${esc(m.role)}</span><span>${esc(m.role2)}</span></p>
+        </div>
+      </div>
+      <div class="classic-id__row classic-id__row--mobile">
         <div class="classic-avatar"><img src="${esc(m.portrait)}" alt="Porträt ${esc(m.name)}"></div>
         <h1 class="classic-name">${esc(m.name)}</h1>
       </div>
-      <p class="classic-roles"><span>${esc(m.role)}</span><span>${esc(m.role2)}</span></p>
+      <p class="classic-roles--mobile"><span>${esc(m.role)}</span><span>${esc(m.role2)}</span></p>
     </div>
   </div>`;
 }
@@ -301,10 +328,11 @@ function renderList(){
       <li class="row rise" style="animation-delay:${.05+i*.05}s">
         <a href="#/${esc(p.id)}">
           <i class="row__bar" aria-hidden="true"></i>
-          <div class="row__thumb"><img src="${esc(p.cover)}" alt="" loading="${i?'lazy':'eager'}"></div>
+          <div class="row__thumb row__thumb--desktop"><img src="${esc(p.cover)}" alt="" loading="${i?'lazy':'eager'}"></div>
           <div class="row__body">
             <span class="row__code">${esc(p.code)}</span>
             <h3 class="row__title">${esc(p.title)}</h3>
+            <div class="row__thumb row__thumb--mobile"><img src="${esc(p.cover)}" alt="" loading="lazy"></div>
             <p class="row__sum">${esc(p.summary)}</p>
             <ul class="tags">${(p.tags||[]).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
           </div>
