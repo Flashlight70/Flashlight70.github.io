@@ -118,10 +118,13 @@ main.classic.compact .buttons li a{padding:11px 14px}
 @media (max-width:520px){.buttons.cols-3{grid-template-columns:1fr}}
 @media (max-width:480px){
   .buttons.cols-2 .buttons__sub{font-size:9.5px;letter-spacing:.03em}
-  .buttons.cols-2 li a{padding:12px 10px;gap:9px}
+  .buttons.cols-2 li a{padding:12px 10px;gap:9px;height:100%}
+  .buttons.cols-1 li a{justify-content:flex-start}
+  .classic-name{font-size:28px}
+  .classic-id__row{width:100%}
+  .classic-name{margin-left:auto;text-align:right}
+  .classic-roles{text-align:center}
 }
-
-@media (max-width:520px){.buttons{grid-template-columns:1fr}}
 
 .rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .row{border-bottom:1px solid var(--rule)}
