@@ -81,10 +81,13 @@ a{color:inherit}
 /* Mobile: eigene, unabhängige Variante */
 @media (max-width:480px){
   .classic-id__row--desktop{display:none}
-  .classic-id__row--mobile{display:flex;align-items:center;gap:16px}
+  .classic-id{--ov:clamp(66px,11vw,93px);--av:clamp(132px,22vw,186px)}
   .classic-id__row--mobile .classic-name{
+    position:absolute;left:calc(var(--av) + 16px);
+    top:calc((var(--ov) + var(--av) + 10px) / 2);
+    transform:translateY(-50%);
     font-family:var(--disp);font-weight:600;text-transform:uppercase;
-    font-size:28px;line-height:1;margin:0;letter-spacing:-.005em;
+    font-size:28px;line-height:1;margin:0;letter-spacing:-.005em;white-space:nowrap;
   }
   .classic-roles--mobile{
     display:block;font-family:var(--disp);font-size:14px;color:var(--ink-2);
