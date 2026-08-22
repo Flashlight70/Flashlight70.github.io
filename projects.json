@@ -34,7 +34,8 @@
     ],
     "phone": "+41 79 275 75 50"
   },
-  "projects": [    {
+  "projects": [
+    {
       "id": "pi-server",
       "code": "26-01",
       "title": "Raspberry-Pi App-Server",
@@ -85,7 +86,7 @@
         {
           "type": "image",
           "src": "https://raw.githubusercontent.com/Flashlight70/pi-server/main/case/images/assembly.gif",
-          "caption": "Zusammenbau Animation"
+          "caption": "Zusammenbau-Animation"
         },
         {
           "type": "image",
@@ -111,7 +112,7 @@
       "sections": [
         {
           "label": "Problemstellung",
-          "body": "Ich entwickle mithilfe von KI gerne auf mich zugeschnittene Web-Apps.\nDa ich auf diversen, unterschiedlichen Geräten arbeite wurde der lokale Betrieb zunehmend zu einem Problem. Zusätzlich erschwerte der Zugriff für meine Frau sowie der Datenaustausch zwischen meinen Geräten die Situation.\nEin Server mit Portweiterleitung aus meinem privaten Netzwerk war kein Thema, da mir das Risiko zu gross ist."
+          "body": "Ich entwickle mithilfe von KI gerne auf mich zugeschnittene Web-Apps.\nDa ich auf diversen, unterschiedlichen Geräten arbeite, wurde der lokale Betrieb zunehmend zu einem Problem. Zusätzlich erschwerte der Zugriff für meine Frau sowie der Datenaustausch zwischen meinen Geräten die Situation.\nEin Server mit Portweiterleitung aus meinem privaten Netzwerk war kein Thema, da mir das Risiko zu gross ist."
         },
         {
           "label": "Lösung",
@@ -119,17 +120,17 @@
         },
         {
           "label": "Gehäuse",
-          "body": "Da ich online kein passendes Gehäuse für meine spezifischen Anforderungen finden konnte, entwickelte ich mir mein eigenes.\nDamit der Server Praktisch neben dem Router platziert werden kann, leitete ich mittels Adapter-Board die Anschlüsse an die Rückseite um.\nDurch die Lüfterrichtung des Aktivkühlers auf meinem Raspberry Pi 5, von hinten nach vorne, war auch die Luftrichtung durch das Gehäuse vorherbestimmt. Aufgrund dieser Ausgangslage entschied ich mich den 40mm Lüfter hinten unten mit einsaugender Richtung zu platzieren. Hinten zwischen den Anschlüssen sind zusätzliche Lufteinlässe für nachströmende Kaltluft. Vorne zwischen dem optisch ansprechenden Raster sind Luftlöcher für die abströmende Warmluft versteckt."
+          "body": "Da ich online kein passendes Gehäuse für meine spezifischen Anforderungen finden konnte, entwickelte ich mir mein eigenes.\nDamit der Server praktisch neben dem Router platziert werden kann, leitete ich mittels Adapter-Board die Anschlüsse an die Rückseite um.\nDurch die Lüfter-Richtung des Aktivkühlers auf meinem Raspberry Pi 5, von hinten nach vorne, war auch die Luftrichtung durch das Gehäuse vorherbestimmt. Aufgrund dieser Ausgangslage entschied ich mich, den 40mm-Lüfter hinten unten mit einsaugender Richtung zu platzieren. Hinten zwischen den Anschlüssen sind zusätzliche Lufteinlässe für nachströmende Kaltluft. Vorne zwischen dem optisch ansprechenden Raster sind Luftlöcher für die abströmende Warmluft versteckt."
         },
         {
           "label": "Eigenanteil",
-          "body": "Die Konstruktion des gesamten Gehäuses, so wie die Platzierung der Bauteile ist 100% Eigenanteil.\nDie Entwicklung der Apps basiert zum grössten Teil auf KI aber unter der Federführung für Design und Funktionen von mir.\nDie Einrichtung des Servers sowie des Netzwerkes passierten mit viel Unterstützung seitens KI."
+          "body": "Die Konstruktion des gesamten Gehäuses sowie die Platzierung der Bauteile ist 100% Eigenanteil.\nDie Entwicklung der Apps basierte zum grössten Teil auf KI, aber Design und Funktionen entstanden unter der Federführung von mir.\nDie Einrichtung des Servers sowie des Netzwerkes passierten mit viel Unterstützung seitens KI."
         }
       ],
       "specs": [
         [
           "Rechner",
-          "Raspberry Pi 5 mit original Aktivkühler"
+          "Raspberry Pi 5 mit Original-Aktivkühler"
         ],
         [
           "Speicher",
@@ -137,11 +138,15 @@
         ],
         [
           "Gehäuseteile",
-          "7 Gedruckte Teile, teils PLA, teils PETG HF"
+          "7 gedruckte Teile, teils PLA, teils PETG HF"
         ]
       ],
       "revisions": [
-        { "rev": "1.0", "date": "2026-08-18", "note": "Dokumentation und Modelldateien veröffentlicht" }
+        {
+          "rev": "1.0",
+          "date": "2026-08-18",
+          "note": "Dokumentation und Modelldateien veröffentlicht"
+        }
       ],
       "links": [
         {
@@ -149,10 +154,78 @@
           "url": "https://github.com/Flashlight70/pi-server"
         },
         {
-          "label": "Dateien zum direkten drucken auf Makerworld",
+          "label": "Dateien zum direkten Drucken auf Makerworld",
           "url": "https://makerworld.com/de/models/3161278-desktop-style-raspberry-pi-5-case-m-2-hat-fan#profileId-3572718"
         }
       ]
+    },
+    {
+      "id": "arduino-systemplatine",
+      "code": "25-01",
+      "title": "Arduino-Systemplatine",
+      "subtitle": "PCB-Design, Schaltungsentwicklung, Lötarbeit",
+      "summary": "Arduino-Verbindungszentrale für eine einfache, lötfreie, aber feste Verbindung der Komponenten an den Pins.\nSpezifisch für eine Teleskopsteuerung.",
+      "tags": [
+        "PCB-Design",
+        "Schaltungsentwicklung",
+        "Löten"
+      ],
+      "cover": "assets/arduino-systemplatine/Leiterplatine_Rendering.png",
+      "media": [
+        {
+          "type": "image",
+          "src": "assets/arduino-systemplatine/Leiterplatine_Fertig.jpg",
+          "caption": "Finale Systemplatine"
+        },
+        {
+          "type": "image",
+          "src": "assets/arduino-systemplatine/Leiterplatine_Rendering.png",
+          "caption": "Rendering Systemplatine"
+        }
+      ],
+      "sections": [
+        {
+          "label": "Problemstellung",
+          "body": "Wenn das Wetter und meine zeitliche Verfügbarkeit passen, sitze ich nachts gerne draussen und beobachte den Himmel mit meinem Teleskop.\nDie Montierung meines ersten Teleskopes musste aber manuell bedient werden, was teilweise zu Schwierigkeiten bei der Nachführung führte."
+        },
+        {
+          "label": "Lösung",
+          "body": "Abhilfe schaffen automatisierte Montierungen. Da diese aber sehr teuer in der Anschaffung sind, entschied ich mich den Versuch zu starten, eine eigene Automatisierung zu entwickeln.\nDafür setzte ich auf einen einfachen, über Arduino ansteuerbaren Schrittmotor und ein Arduino pro Micro.\nDamit die Komponenten wie Motor, Signal-LED und Taster für das Ausrichten der Montierung nicht fest verlötet werden mussten, entschied ich mich, eine zentrale Systemplatine zu entwickeln."
+        },
+        {
+          "label": "Platine",
+          "body": "Die Platine verfügt über weibliche 2.54mm-Pins, damit der Arduino einfach aufgesteckt werden kann.\nZusätzlich sind für LED, Motor und Taster JST-Stecker platziert, damit alle Bauteile nach der Montage an der Montierung einfach durch Stecken miteinander verbunden werden können.\nFür die LED ist ein Vor- und für die Taster ein Pullup-Widerstand direkt auf der Platine verlötet.\nDamit ein späteres Nachrüsten möglich bleibt, entschied ich mich für zwei weitere Pin-Reihen, damit sämtliche Anschlüsse des Arduinos erreichbar bleiben."
+        },
+        {
+          "label": "Eigenanteil",
+          "body": "Die Schaltung wurde zu 100% durch mich erstellt wie auch die daraus abgeleitete Platine.\nZur Hilfestellung kam lediglich ein Anleitungsvideo für mein Wahlprogramm: Fusion360.\nDa dies mein erster Versuch für eine selbstdesignte Platine war, setzte ich bewusst auf THT-Bauteile."
+        }
+      ],
+      "specs": [
+        [
+          "Mikrocontroller",
+          "Arduino Pro Micro"
+        ],
+        [
+          "Widerstände",
+          "220Ω und 1kΩ THT"
+        ],
+        [
+          "Steckverbinder",
+          "2-, 3- und 4-polige JST"
+        ],
+        [
+          "ECAD-System",
+          "Fusion360"
+        ]
+      ],
+      "revisions": [
+        {
+          "rev": "1.0",
+          "date": "2025-04-03",
+          "note": "Fertigstellung"
+        }
+      ]
     }
-]
+  ]
 }
