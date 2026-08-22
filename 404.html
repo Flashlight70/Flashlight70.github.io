@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Nils Rumpf</title>
+<script>
+  // GitHub Pages liefert diese Datei für jeden Pfad aus, der keiner echten
+  // Datei entspricht (z.B. /projekte, /pi-server). Wir merken uns den Pfad
+  // und leiten sofort zur echten index.html weiter. Dort wird der Pfad
+  // wiederhergestellt und die passende Ansicht gerendert.
+  sessionStorage.setItem('spa-redirect', location.pathname + location.search + location.hash);
+  location.replace('/');
+</script>
+</head>
+<body></body>
+</html>

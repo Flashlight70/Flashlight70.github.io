@@ -247,6 +247,17 @@ figcaption b{font-weight:500;letter-spacing:.14em;text-transform:uppercase;color
 <div id="app"></div>
 
 <script>
+(function(){
+  // GitHub Pages hat keine echten Routen: 404.html merkt sich den
+  // aufgerufenen Pfad und schickt ihn hierher zurück, bevor geroutet wird.
+  var r = sessionStorage.getItem('spa-redirect');
+  if(r){
+    sessionStorage.removeItem('spa-redirect');
+    if(r !== location.pathname + location.search + location.hash){
+      history.replaceState(null, null, r);
+    }
+  }
+})();
 const ICON={
   phone:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 3h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A15 15 0 0 1 2.5 4.6 1.5 1.5 0 0 1 4 3Z"/></svg>',
   mail:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12"/><path d="m2.6 4.6 7.4 6 7.4-6"/></svg>',
@@ -262,7 +273,7 @@ const para=t=>String(t).split(/\n\s*\n/).map(p=>`<p>${esc(p).replace(/\n/g,'<br>
 const usable=v=>v && !/^(HIER_|mailto:HIER_|tel:HIER_)/.test(v);
 function linkAttrs(url){
   if(/^mailto:|^tel:/.test(url)) return '';
-  if(url.startsWith('#')) return '';
+  if(url.startsWith('#')||url.startsWith('/')) return '';
   return ' target="_blank" rel="noopener"';
 }
 
@@ -318,7 +329,7 @@ function renderCard(){
   app.innerHTML=`<div class="page-surface">`+classicHeader()+`
   <main class="classic wrap compact">
     ${row(contact,2,.05)}
-    ${row([btn('arrow','Projektportfolio',`${state.data.projects.length} dokumentierte Projekte`,'#/projekte')],1,.09)}
+    ${row([btn('arrow','Projektportfolio',`${state.data.projects.length} dokumentierte Projekte`,'/projekte')],1,.09)}
     ${row(profiles,3,.13)}
   </main></div>`;
 }
@@ -332,7 +343,7 @@ function renderList(){
     <p style="margin:0 0 18px"><a class="addbtn" href="neu-projekt.html">+ Projekt erfassen</a></p>
     ${ps.length?`<ul class="rows">${ps.map((p,i)=>`
       <li class="row rise" style="animation-delay:${.05+i*.05}s">
-        <a href="#/${esc(p.id)}">
+        <a href="/${esc(p.id)}">
           <i class="row__bar" aria-hidden="true"></i>
           <div class="row__thumb row__thumb--desktop"><img src="${esc(p.cover)}" alt="" loading="${i?'lazy':'eager'}"></div>
           <div class="row__body">
@@ -355,7 +366,7 @@ function renderDetail(p){
   const last=(p.revisions&&p.revisions[0])||null;
   app.innerHTML=`<div class="page-surface detail-page">`+classicHeader()+`
   <main class="classic wrap">
-    <a class="back" href="#/projekte">← Übersicht</a>
+    <a class="back" href="/projekte">← Übersicht</a>
     <div class="dblock rise">
       <div class="dblock__main">
         <p class="eyebrow">${esc(p.code)}</p>
@@ -399,13 +410,29 @@ function renderDetail(p){
 
 function route(){
   if(!state.data) return;
-  const id=location.hash.replace(/^#\/?/,'').trim();
+  const id=decodeURIComponent(location.pathname.replace(/^\/+/,'').replace(/\/+$/,'')).trim();
   if(!id){ renderCard(); window.scrollTo({top:0,behavior:'instant'}); return; }
   if(id==='projekte'){ renderList(); window.scrollTo({top:0,behavior:'instant'}); return; }
   const p=state.data.projects.find(x=>x.id===id);
   if(p){ renderDetail(p); } else { renderCard(); }
   window.scrollTo({top:0,behavior:'instant'});
 }
+
+// Klicks auf interne Pfad-Links (erzeugt durch renderCard/List/Detail) abfangen,
+// damit ohne vollen Seiten-Reload navigiert wird. Externe Links, mailto:, tel:
+// und neu-projekt.html bleiben normales Browser-Verhalten.
+document.addEventListener('click', e=>{
+  const a=e.target.closest('a');
+  if(!a) return;
+  const href=a.getAttribute('href')||'';
+  if(!href.startsWith('/')) return;
+  if(a.target==='_blank') return;
+  e.preventDefault();
+  if(location.pathname!==href){
+    history.pushState(null,null,href);
+    route();
+  }
+});
 
 fetch('projects.json',{cache:'no-store'})
   .then(r=>{if(!r.ok)throw 0;return r.json()})
@@ -419,7 +446,7 @@ fetch('projects.json',{cache:'no-store'})
     <code>python -m http.server</code> starten und <code>localhost:8000</code> öffnen.</p></div>`;
   });
 
-addEventListener('hashchange',route);
+addEventListener('popstate',route);
 </script>
 </body>
 </html>
