@@ -16,3 +16,6 @@ desktop.ini
 *.mov
 *.PNG
 *.f3d
+
+# Ausnahme: bewusst kleines, transparentes Rendering fürs Portfolio
+!assets/arduino-systemplatine/Leiterplatine_Rendering.png

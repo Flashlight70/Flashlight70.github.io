@@ -94,6 +94,8 @@ a{color:inherit}
     margin:10px 0 0;text-align:center;
   }
   .classic-roles--mobile span:not(:last-child)::after{content:" · "}
+  .detail-page .classic-banner,
+  .detail-page .classic-id{display:none}
 }
 
 .pagenav{display:flex;gap:6px;margin:clamp(20px,4vw,28px) 0 0;border-bottom:1.5px solid var(--ink)}
@@ -351,7 +353,7 @@ function renderDetail(p){
   const m=state.data.meta;
   document.title=`${p.title} — ${m.name}`;
   const last=(p.revisions&&p.revisions[0])||null;
-  app.innerHTML=`<div class="page-surface">`+classicHeader()+`
+  app.innerHTML=`<div class="page-surface detail-page">`+classicHeader()+`
   <main class="classic wrap">
     <a class="back" href="#/projekte">← Übersicht</a>
     <div class="dblock rise">

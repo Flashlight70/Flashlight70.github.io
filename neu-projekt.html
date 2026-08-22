@@ -148,7 +148,15 @@ const tpl={
     <div style="margin-top:8px"><button class="mini" data-del>Entfernen</button></div></div>`
 };
 
-const add=k=>document.getElementById(k).insertAdjacentHTML('beforeend',tpl[k]());
+const add=k=>{
+  document.getElementById(k).insertAdjacentHTML('beforeend',tpl[k]());
+  if(k==='revs'){
+    const rows=document.querySelectorAll('#revs .rep');
+    const row=rows[rows.length-1];
+    row.querySelector('[data-f="date"]').value=new Date().toISOString().slice(0,10);
+    row.querySelector('[data-f="rev"]').value=(rows.length)+'.0';
+  }
+};
 document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>add(b.dataset.add));
 document.addEventListener('click',e=>{
   const d=e.target.closest('[data-del]');
@@ -156,7 +164,6 @@ document.addEventListener('click',e=>{
 });
 
 ['secs','specs','media','revs','links'].forEach(add);
-document.querySelectorAll('#revs [data-f="date"]').forEach(i=>i.value=new Date().toISOString().slice(0,10));
 
 const val=id=>document.getElementById(id).value.trim();
 const rows=k=>[...document.querySelectorAll('#'+k+' .rep')].map(r=>{
