@@ -4,10 +4,10 @@
     "role": "Elektroplaner EFZ",
     "role2": "Elektrotechniker HF in Ausbildung",
     "tagline": "Aus Faszination für Elektrotechnik, Elektronik, KI und 3D‑Druck baue ich mir eigene Schaltungen und Gehäuse.",
-    "hero": "assets/site/hero-banner.jpg",
+    "hero": "/assets/site/hero-banner.jpg",
     "heroAlt": "",
-    "portrait": "assets/site/portrait.webp",
-    "portraitFallback": "assets/site/portrait.png",
+    "portrait": "/assets/site/portrait.webp",
+    "portraitFallback": "/assets/site/portrait.png",
     "stand": "2026-08",
     "intro": "Aus Faszination für Elektrotechnik, Elektronik, KI und 3D‑Druck baue ich mir gerne eigene Schaltungen und Gehäuse. Hier dokumentiere ich meine neuesten Projekte.",
     "links": [
@@ -170,16 +170,16 @@
         "Schaltungsentwicklung",
         "Löten"
       ],
-      "cover": "assets/arduino-systemplatine/Leiterplatine_Rendering.png",
+      "cover": "/assets/arduino-systemplatine/Leiterplatine_Rendering.png",
       "media": [
         {
           "type": "image",
-          "src": "assets/arduino-systemplatine/Leiterplatine_Fertig.jpg",
+          "src": "/assets/arduino-systemplatine/Leiterplatine_Fertig.jpg",
           "caption": "Finale Systemplatine"
         },
         {
           "type": "image",
-          "src": "assets/arduino-systemplatine/Leiterplatine_Rendering.png",
+          "src": "/assets/arduino-systemplatine/Leiterplatine_Rendering.png",
           "caption": "Rendering Systemplatine"
         }
       ],
